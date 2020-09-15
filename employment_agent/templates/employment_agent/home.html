@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+
+<head>
+    <title>Employer agent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'employment_agent/home.css'%}" />
+    <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
+    <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
+</head>
+
+<body>
+    {% include "./components/navbar.html" %}
+    <div class="container">
+        <div class="nav-links">
+            <a id="go-to-job-seekers" href="{% url 'job-seekers' %}">Job seekers</a>
+            <a id="go-to-employers" href="{% url 'employers' %}">Employers</a>
+        </div>
+    </div>
+    {% include "./components/footer.html" %}
+    <script src="{% static 'employment_agent/home.js'%}"></script>
+</body>
+
+</html>

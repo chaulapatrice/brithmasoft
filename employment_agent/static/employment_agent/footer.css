@@ -1,0 +1,14 @@
+@media screen and (max-width: 900px) {
+    .footer {
+        text-align: center;
+        padding: 10px;
+        
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .footer {
+        text-align: center;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+
+<head>
+    <title>Employer agent | Employers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
+    <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
+</head>
+
+<body>
+    {% include "./components/navbar.html" %}
+    <div class="container">
+        <table>
+            <thead>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Job title</th>
+                <th>Status</th>
+                <th>Date needed</th>
+                <th>&nbsp;</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+    {% include "./components/footer.html" %}
+</body>
+
+</html>
