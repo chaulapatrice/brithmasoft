@@ -3,17 +3,31 @@ A navigation bar with background color of white
 Button with background color of 85c7f2
 */
 
-.navbar nav img{
+.navbar nav img {
     height: 50px;
 }
+
+.sticky {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+
+button:hover{
+    background-color: #85c7f2;
+}
+
 /*For mobile phones*/
 
 @media screen and (max-width: 900px) {
     .navbar {
         margin: 0;
         background: #fff;
-        border-bottom: 1px solid #dbdbdb;
         padding-bottom: 10px;
+        border: #1111112b 1px solid;
+        z-index: 201;
     }
     .navbar nav {
         background-color: #fff;
@@ -40,20 +54,18 @@ Button with background color of 85c7f2
         width: 90px;
         float: right;
         margin-right: 10px;
-        
     }
-
-    .navbar nav #actions a:hover{
+    .navbar nav #actions a:hover {
         color: #85c7f2;
         text-decoration: underline;
     }
-
-    .link-text{
+    .link-text {
         display: inline-block;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
     }
+    
 }
 
 /* For laptop screens */
@@ -61,13 +73,13 @@ Button with background color of 85c7f2
 @media screen and (min-width: 900px) {
     .navbar {
         background: #fff;
-        position: fixed;
+        z-index: 201;
+        padding-bottom: 10px;
+        position: sticky;
+        box-shadow: 0 15px 10px -15px #1111112b;
         top: 0px;
         left: 0px;
         right: 0px;
-        z-index: 201;
-        border-bottom: 1px solid #dbdbdb;
-        padding-bottom: 10px;
     }
     .navbar nav {
         background-color: #fff;
@@ -93,33 +105,32 @@ Button with background color of 85c7f2
         width: 90px;
         float: right;
         margin-right: 10px;
-        
     }
-
-    .navbar nav #actions a:hover{
+    .navbar nav #actions a:hover {
         color: #85c7f2;
         text-decoration: underline;
     }
-
-    .link-text{
+    .link-text {
         display: inline-block;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
     }
+   
 }
 
 /*For bigger screens */
+
 @media screen and (min-width: 1370px) {
     .navbar {
         background: #fff;
-        position: fixed;
+        z-index: 201;
+        padding-bottom: 10px;
+        position: sticky;
+        box-shadow: 0 15px 10px -15px #1111112b;
         top: 0px;
         left: 0px;
         right: 0px;
-        z-index: 201;
-        border-bottom: 1px solid #dbdbdb;
-        padding-bottom: 10px;
     }
     .navbar nav {
         margin: auto;
@@ -147,18 +158,16 @@ Button with background color of 85c7f2
         width: 90px;
         float: right;
         margin-right: 10px;
-        
     }
-
-    .navbar nav #actions a:hover{
+    .navbar nav #actions a:hover {
         color: #85c7f2;
         text-decoration: underline;
     }
-
-    .link-text{
+    .link-text {
         display: inline-block;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
     }
+   
 }

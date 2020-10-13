@@ -1,0 +1,137 @@
+select{
+    font-size: 18px;
+    border: 2px solid #85c7f2;
+}
+
+.search-ui form div{
+    padding: 10px;
+}
+@media screen and (max-width:900px) {
+    .search-ui form {
+        display: block;
+    }
+
+    .search-ui .filter {
+
+    }
+    .search-ui .filter  select {
+        padding: 10px;
+        display: block;
+        border-radius: 5px;
+        width: 100%;
+        background-color: #85c7f2;
+        color: white;
+    }
+    .search-ui .search-input {
+
+    }
+    .search-ui .search-input input {
+        display: block;
+        padding: 10px;
+        border: 1px solid #85C7F2;
+        background-color: rgb(241, 238, 238);
+        border-radius: 5px;
+        width: 100%;
+    }
+    .search-ui .search-button {
+        
+    }
+    .search-ui .search-button input {
+        display: block;
+        padding: 10px;
+        background-color: #85c7f2;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        border: 2px solid #85c7f2;
+    }
+}
+
+@media screen and (min-width:900px) {
+    .search-ui form {
+        display: flex;
+    }
+
+    .search-ui form div{
+        flex: 1;
+    }
+
+    .search-ui .filter {
+        
+    }
+    .search-ui .filter  select {
+        padding: 10px;
+        display: block;
+        border-radius: 5px;
+        width: 100%;
+        background-color: #85c7f2;
+        color: white;
+    }
+    .search-ui .search-input {
+
+    }
+    .search-ui .search-input input {
+        display: block;
+        padding: 10px;
+        border: 1px solid #85C7F2;
+        background-color: rgb(241, 238, 238);
+        border-radius: 5px;
+        width: 100%;
+    }
+    .search-ui .search-button {
+
+    }
+    .search-ui .search-button input {
+        display: block;
+        padding: 10px;
+        background-color: #85c7f2;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        border: 2px solid #85c7f2;
+    }
+}
+
+@media screen and (min-width:1370px) {
+    .search-ui form {
+        display: flex;
+    }
+
+    .search-ui form div{
+        flex: 1;
+    }
+    .search-ui .filter {
+        
+    }
+    .search-ui .filter  select {
+        padding: 10px;
+        display: block;
+        border-radius: 5px;
+        width: 100%;
+        background-color: #85c7f2;
+        color: white;
+    }
+    .search-ui .search-input {
+
+    }
+    .search-ui .search-input input {
+        display: block;
+        padding: 10px;
+        border: 1px solid #85C7F2;
+        background-color: rgb(241, 238, 238);
+        border-radius: 5px;
+        width: 100%;
+    }
+    .search-ui .search-button {
+
+    }
+    .search-ui .search-button input {
+        display: block;
+        padding: 10px;
+        background-color: #85c7f2;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        border: 2px solid #85c7f2;
+    }
+}

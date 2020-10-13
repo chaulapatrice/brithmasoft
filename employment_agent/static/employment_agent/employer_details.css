@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Kumbh Sans", serif;
+    line-height: 1.5em;
+}
+
+* p, * td, * th, * span, * label, * input, * button {
+    font-size: 18px;
+}
+
+
+button {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid #85c7f2;
+    background-color: transparent;
+    color: black;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        width: 100%;
+        min-height: 80vh;
+        position: relative;
+    }
+    .container table {
+        margin: 10px auto;
+        width: 95%;
+    }
+    .container table tr th {
+        text-align: left;
+        padding: 10px 0;
+    }
+    .container table tr td {
+        text-align: left;
+        padding: 10px 0;
+    }
+    .controls{
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px 0;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .container {
+        width: 100%;
+        min-height: 80vh;
+        position: relative;
+        
+    }
+    .container table {
+        margin: 10px auto;
+        width: 95%;
+        padding: 10px;
+        border: 2px solid #85c7f2;
+        border-radius: 5px;
+    }
+    .container table tr th {
+        text-align: left;
+        padding: 10px 0;
+    }
+    .container table tr td {
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .controls{
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px 0;
+    }
+}
+
+@media screen and (min-width: 1370px) {
+    .container {
+        width: 1336px;
+        margin: auto;
+        position: relative;
+        min-height: 700px;
+    }
+    .container table {
+        margin: 10px auto;
+        width: 95%;
+        padding: 10px;
+        border: 2px solid #85c7f2;
+        border-radius: 5px;
+    }
+    .container table tr th {
+        text-align: left;
+        padding: 10px 0;
+    }
+    .container table tr td {
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .controls{
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px 0;
+    }
+}

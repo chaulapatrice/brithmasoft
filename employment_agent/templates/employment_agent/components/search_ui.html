@@ -1,0 +1,26 @@
+{% load static %}
+{% block search_ui_style %}
+ <link rel="stylesheet" href="{% static 'employment_agent/search_ui.css'%}" />
+{% endblock %}
+<div class="search-ui">
+   <form method="POST" id="search-form" action="{{search_url}}" >
+    {% csrf_token %}
+   <div class="filter">
+       <select name="status" id="status">
+           <option value="-1" selected disabled> Filter jobs using status</option>
+           <option value="1">Found</option>
+           <option value="0">Still looking</option>
+       </select>
+   </div>
+   <div class="search-input"> 
+       <input name="job_title" id="job-title" type="search" placeholder="Search using job title"/>
+   </div>
+   <div class="search-button">
+      <input type="submit" value="Go"/>
+   </div>
+   </form>
+</div>
+
+{% block search_ui_js %}
+<script src="{% static 'employment_agent/search_employers.js'%}"></script>
+{% endblock %}

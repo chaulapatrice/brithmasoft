@@ -4,6 +4,8 @@
 <head>
     <title>Employer agent | Employers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'employment_agent/employers.css'%}" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
     <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
 </head>
@@ -11,21 +13,93 @@
 <body>
     {% include "./components/navbar.html" %}
     <div class="container">
-        <table>
-            <thead>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Job title</th>
-                <th>Status</th>
-                <th>Date needed</th>
-                <th>&nbsp;</th>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
+        <div class="employers-list">
+            {% include "./components/search_ui.html" %}
+
+            {% if employers_list %}
+            <table id="employers-table">
+                <thead>
+                    {% if is_mobile %}
+                    {% else %}
+                    <tr id="heading">
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Job title</th>
+                        <th>Status</th>
+                        <th>Date needed</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    {% endif %}
+                </thead>
+                <tbody>
+                    {% for employer in employers_list %}
+                    {% if is_mobile %}
+                    <tr class="data-row">
+                        <td><b>Firstname:</b> {{ employer.firstname }} </td>
+                        <td><b>Lastname:</b> {{ employer.lastname }} </td>
+                        <td><b>Job title:</b> {{ employer.job_title }} </td>
+                        <td><b>Status:</b> <span class="status"> {{employer.status}} </span></td>
+                        <td><b>Date needed:</b> {{ employer.date_needed }} </td>
+                        <td>
+                            <button onclick="viewEmployer({{employer.id}})">View</button>
+                            <button onclick="editEmployer({{employer.id}})">Edit</button>
+                            <button onclick="deleteEmployer({{employer.id}})">Delete</button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr class="data-row">
+                        <td>{{ employer.firstname }}</td>
+                        <td>{{ employer.lastname }}</td>
+                        <td>{{ employer.job_title }}</td>
+                        <td><span class="status">{{employer.status}}</span></td>
+                        <td>{{ employer.date_needed }}</td>
+                        <td id="controls">
+                            <button onclick="viewEmployer({{employer.id}})">View</button>
+                            <button onclick="editEmployer({{employer.id}})">Edit</button>
+                            <button onclick="deleteEmployer({{employer.id}})">Delete</button>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--Now the pagination section-->
+        {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+
+                <span id="previous-ref">
+                    {% if page_obj.has_previous %}
+                    <a href="/employers?page={{page_obj.previous_page_number}}"> &laquo; previous</a>
+                    {% endif %}
+                </span>
+
+                <span class="page-current">
+                    Page <span id="current-page">{{ page_obj.number }}</span>
+                    of <span id="total-pages">{{ page_obj.paginator.num_pages }}</span>.
+                </span>
+
+                <span id="next-ref">
+                    {% if page_obj.has_next %}
+                    <a href="/employers?page={{page_obj.next_page_number}}">next &raquo;</a>
+                    {% endif %}
+                </span>
+
+            </span>
+        </div>
+        {% endif %}
+        {% else %}
+        <p id="no-employers-found-tag">
+            <span>No employers found</span>
+            <button>Add new</button>
+        </p>
+        {% endif %}
     </div>
     {% include "./components/footer.html" %}
+    <script src="{% static 'employment_agent/jquery-3.5.1.js'%}"></script>
+    <script src="{% static 'employment_agent/employer.js'%}"></script>
+    <script src="{% static 'employment_agent/employer_functions.js'%}"></script>
 </body>
 
 </html>

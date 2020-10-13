@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
+    <link rel="stylesheet" href="{% static 'employment_agent/employer_details.css'%}" />
+    <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
+    <title>Employer | {{employer.firstname}}</title>
+</head>
+<body>
+    {% include "./components/navbar.html" %}
+    <div class="container">
+        <table class="employer">
+            <tbody>
+                <tr><td><b>Firstname:</b></td>
+                    <td>{{employer.firstname}}</td>
+                </tr>
+                <tr><td><b>Lastname:</b></td>
+                    <td>{{employer.lastname}}</td>
+                </tr>
+                <tr><td><b>Job title:</b></td>
+                    <td>{{employer.job_title}}</td>
+                </tr>
+                <tr><td><b>Job description:</b></td>
+                    <td>{{employer.job_description}}</td>
+                </tr>
+                <tr><td><b>Phone number:</b></td>
+                    <td>{{employer.phone_number}}</td>
+                </tr>
+                <tr><td><b>Email address:</b></td>
+                    <td>{{employer.email_address}}</td>
+                </tr>
+                <tr><td><b>Status:</b></td>
+                    <td id="status">{{employer.status}}</td>
+                </tr>
+                <tr><td><b>Date needed:</b></td>
+                    <td>{{employer.date_needed}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="attachments">
+
+        </div>
+        <div class="controls">
+            <button onclick="editEmployer({{employer.id}})">Edit</button>
+            <button onclick="deleteEmployer({{employer.id}})">Delete</button>
+        </div>
+    </div>
+    {% include "./components/footer.html" %}
+    <script src="{% static 'employment_agent/employer_detail.js'%}"></script>
+    <script src="{% static 'employment_agent/employer_functions.js'%}"></script>
+</body>
+</html>

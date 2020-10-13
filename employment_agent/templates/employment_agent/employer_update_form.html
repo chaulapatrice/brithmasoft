@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update | {{employer.firstname}}</title>
+    <link rel="stylesheet" href="{% static 'employment_agent/employer_update.css'%}" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
+    <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
+</head>
+<body>
+    {% include "./components/navbar.html" %}
+    <div class="container">
+        <form action="" method="post">
+            <h1>Edit employer data</h1>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" id="update-btn" value="Update"/>
+        </form>
+    </div>
+    {% include "./components/footer.html" %}
+</body>
+</html>
