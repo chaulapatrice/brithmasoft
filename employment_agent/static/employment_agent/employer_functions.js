@@ -1,12 +1,13 @@
 //Function to view employer data
+const hostname = "localhost:8000";
 viewEmployer = (id) => {
-    console.log(id);
-}
-//Function to edit employer data
+        window.location = `http://${hostname}/employers/${id}`;
+    }
+    //Function to edit employer data
 editEmployer = (id) => {
-    console.log(id);
-}
-//Function to delete employer data
+        window.location = `http://${hostname}/employers/${id}/update`;
+    }
+    //Function to delete employer data
 deleteEmployer = (id) => {
-    console.log(id);
+    window.location = `http://${hostname}/employers/${id}/delete`;
 }

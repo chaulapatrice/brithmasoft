@@ -1,0 +1,15 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block extra_head %}
+ <link rel="stylesheet" href="{% static 'employment_agent/jobseeker_confirm_delete.css' %}" />
+{% endblock extra_head %}
+{% block content %}
+<div class="py-3">
+ <form class="text-center" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input class="btn btn-primary" type="submit" value="Confirm"/>
+</form>
+</div>
+{% endblock content %}
+

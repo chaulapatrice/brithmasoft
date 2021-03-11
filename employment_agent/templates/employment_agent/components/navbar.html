@@ -1,36 +1,21 @@
 {% load static %}
-<div class="navbar" id="navbar">
-    <nav>
-        <div id="main-menu">
-            <span id="logo">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-briefcase"></i> Brithmasoft</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-                <img src="{% static 'employment_agent/images/ghetto_link_logo.png' %}" />
-            </span>
-        </div>
-        <div id="actions">
-            <a href="http://example.com">
-                <span class="link-text">Sign out</span>
-            </a>
-        </div>
-    </nav>
-</div>
-
-<script>
-    /*
-    window.onscroll = function () {
-        //Get the navbar
-        var navbar = document.getElementById("navbar");
-
-        //Get the offset position of the navbar
-        var sticky = navbar.offsetTop;
-
-        //Add the sticky class to the navbar when you reach 
-        //it's scroll position. Remove "sticky" when you 
-        //leave the scroll position
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky");
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    } */
-</script>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {% if nbar == 'home' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if nbar == 'employers' %} active {% endif %}" href="{% url 'employers' %}">Employers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if nbar == 'jobseekers' %} active {% endif %}" href="{% url 'job-seekers' %}">Job seekers</a>
+      </li>
+    </ul>
+  </div>
+</nav>

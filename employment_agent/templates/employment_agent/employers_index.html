@@ -1,105 +1,89 @@
+{% extends "./base.html" %}
 {% load static %}
-<html>
-
-<head>
-    <title>Employer agent | Employers</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'employment_agent/employers.css'%}" />
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
-    <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
-</head>
-
-<body>
-    {% include "./components/navbar.html" %}
-    <div class="container">
-        <div class="employers-list">
-            {% include "./components/search_ui.html" %}
-
-            {% if employers_list %}
-            <table id="employers-table">
-                <thead>
-                    {% if is_mobile %}
-                    {% else %}
-                    <tr id="heading">
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Job title</th>
-                        <th>Status</th>
-                        <th>Date needed</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    {% endif %}
-                </thead>
-                <tbody>
-                    {% for employer in employers_list %}
-                    {% if is_mobile %}
-                    <tr class="data-row">
-                        <td><b>Firstname:</b> {{ employer.firstname }} </td>
-                        <td><b>Lastname:</b> {{ employer.lastname }} </td>
-                        <td><b>Job title:</b> {{ employer.job_title }} </td>
-                        <td><b>Status:</b> <span class="status"> {{employer.status}} </span></td>
-                        <td><b>Date needed:</b> {{ employer.date_needed }} </td>
-                        <td>
-                            <button onclick="viewEmployer({{employer.id}})">View</button>
-                            <button onclick="editEmployer({{employer.id}})">Edit</button>
-                            <button onclick="deleteEmployer({{employer.id}})">Delete</button>
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr class="data-row">
-                        <td>{{ employer.firstname }}</td>
-                        <td>{{ employer.lastname }}</td>
-                        <td>{{ employer.job_title }}</td>
-                        <td><span class="status">{{employer.status}}</span></td>
-                        <td>{{ employer.date_needed }}</td>
-                        <td id="controls">
-                            <button onclick="viewEmployer({{employer.id}})">View</button>
-                            <button onclick="editEmployer({{employer.id}})">Edit</button>
-                            <button onclick="deleteEmployer({{employer.id}})">Delete</button>
-                        </td>
-                    </tr>
-                    {% endif %}
+{% load widget_tweaks %}
+{% block title %}
+  Employers
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'employment_agent/employers.css'%}" />
+{% endblock extra_head %} {% block content %}
+<div>
+    <div class="row my-3">
+        <div class="col-md-3" id="sticky-sidebar">
+           <div class="card sticky-top my-2" style="width: 100%;" >
+            <div class="card-body">
+                <h5 class="card-title">Search </h5>
+                <form>
+                    {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
                     {% endfor %}
-                </tbody>
-            </table>
+
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field|add_class:'form-control' }}
+                        {% for error in field.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-search"></i> Search</button>
+                </form>
+            </div>
+           </div>
         </div>
-        <!--Now the pagination section-->
-        {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
+        <div class="col-md-9 my-2">
+            <a  href="{% url 'create-employer' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add new employer</a>
+            {% for employer in employers_list %}
+            <div class="card my-2" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{employer.firstname}} {{employer.lastname}}</h5>
+                    <h5>Job title: {{employer.job_title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"> Status:
+                      {% if employer.status %}
+                        <span class="badge badge-primary">Occupied</span>
+                      {% else%}
+                       <spa class="badge badge-success">Vaccant</span>
+                      {% endif %}
+                    </h6>
+                    <p class="card-text">
+                        {{employer.job_description}}
+                    </p>
+
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Due date: {{employer.date_needed}}
+                    </h6>
+                    <a href="{% url 'view-employer' employer.pk  %}" class="btn btn-secondary">View</a> {% if user.is_superuser %}
+                    <a href="{% url 'edit-employer' employer.pk %}" class="btn btn-secondary">Edit</a>
+                    <a href="{% url 'delete-employer' employer.pk %}" class="btn btn-danger">Delete</a> {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <!--Now the pagination section-->
+            {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
 
                 <span id="previous-ref">
                     {% if page_obj.has_previous %}
-                    <a href="/employers?page={{page_obj.previous_page_number}}"> &laquo; previous</a>
+                    <a class="btn btn-primary" href="/employers?page={{page_obj.previous_page_number}}"> &laquo; previous</a>
                     {% endif %}
                 </span>
 
                 <span class="page-current">
-                    Page <span id="current-page">{{ page_obj.number }}</span>
-                    of <span id="total-pages">{{ page_obj.paginator.num_pages }}</span>.
+                    Page <span id="current-page">{{ page_obj.number }}</span> of <span id="total-pages">{{ page_obj.paginator.num_pages }}</span>.
                 </span>
 
                 <span id="next-ref">
                     {% if page_obj.has_next %}
-                    <a href="/employers?page={{page_obj.next_page_number}}">next &raquo;</a>
+                    <a class="btn btn-primary" href="/employers?page={{page_obj.next_page_number}}">next &raquo;</a>
                     {% endif %}
                 </span>
 
-            </span>
+                </span>
+            </div>
         </div>
-        {% endif %}
-        {% else %}
-        <p id="no-employers-found-tag">
-            <span>No employers found</span>
-            <button>Add new</button>
-        </p>
-        {% endif %}
     </div>
-    {% include "./components/footer.html" %}
-    <script src="{% static 'employment_agent/jquery-3.5.1.js'%}"></script>
-    <script src="{% static 'employment_agent/employer.js'%}"></script>
-    <script src="{% static 'employment_agent/employer_functions.js'%}"></script>
-</body>
-
-</html>
+</div>
+{% else %}
+{% endif %} {% endblock content %}

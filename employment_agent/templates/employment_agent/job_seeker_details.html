@@ -1,0 +1,49 @@
+{% extends "./base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'employment_agent/employers.css'%}" />
+{% endblock extra_head %}
+{% block content %}
+<div class="py-3">
+ <table class="table">
+            <tbody>
+                <tr><td><b>Firstname:</b></td>
+                    <td>{{jobseeker.firstname}}</td>
+                </tr>
+                <tr><td><b>Lastname:</b></td>
+                    <td>{{jobseeker.lastname}}</td>
+                </tr>
+                <tr><td><b>Job title:</b></td>
+                    <td>{{jobseeker.job_title}}</td>
+                </tr>
+                <tr><td><b>Phone number:</b></td>
+                    <td>{{jobseeker.phone_number}}</td>
+                </tr>
+                <tr><td><b>Email address:</b></td>
+                    <td>{{jobseeker.email_address}}</td>
+                </tr>
+                <tr><td><b>Status:</b></td>
+                    <td id="status">{{jobseeker.status}}</td>
+                </tr>
+                <tr><td><b>Date needed:</b></td>
+                    <td>{{jobseeker.date_applied}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="attachments">
+
+        </div>
+        <div class="controls">
+            <a class="btn btn-primary" href="{% url 'edit-job-seeker' jobseeker.pk %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'delete-job-seeker' jobseeker.pk %}">Delete</a>
+        </div>
+    </div>
+    </div>
+    {% endblock content %}
+
+    {% block extra_body %}
+    <script src="{% static 'employment_agent/jobseeker_detail.js'%}"></script>
+    <script src="{% static 'employment_agent/jobseeker_functions.js'%}"></script>
+    {% endblock extra_body %}

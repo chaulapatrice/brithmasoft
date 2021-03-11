@@ -1,25 +1,33 @@
+{% extends "./base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update | {{employer.firstname}}</title>
-    <link rel="stylesheet" href="{% static 'employment_agent/employer_update.css'%}" />
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'employment_agent/navbar.css'%}" />
-    <link rel="stylesheet" href="{% static 'employment_agent/footer.css'%}" />
-</head>
-<body>
-    {% include "./components/navbar.html" %}
-    <div class="container">
-        <form action="" method="post">
-            <h1>Edit employer data</h1>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" id="update-btn" value="Update"/>
-        </form>
-    </div>
-    {% include "./components/footer.html" %}
-</body>
-</html>
+{% load widget_tweaks %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'employment_agent/employer_update.css'%}" />
+{% endblock extra_head %} {% block content %}
+<h1>Edit</h1>
+<form id="employer-update" action="" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+       <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{field.label}}</label>
+        {{ field | add_class:'form-control' }}
+        {% for error in field.errors %}
+          <span class="help-block">{{error}}</span>
+        {% endfor %}
+       </div>
+    {% endfor %}
+      <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
+</form>
+{% endblock content %}
+
+{% block extra_body %}
+<script>
+   $(function(){
+     $( "#id_date_needed" ).datepicker();
+   })
+</script>
+{% endblock extra_body %}

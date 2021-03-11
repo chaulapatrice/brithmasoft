@@ -1,20 +1,19 @@
-select{
+select {
     font-size: 18px;
     border: 2px solid #85c7f2;
 }
 
-.search-ui form div{
-    padding: 10px;
+.search-ui form div {
+    padding: 10px 0;
+    margin-right: 10px;
 }
+
 @media screen and (max-width:900px) {
     .search-ui form {
         display: block;
     }
-
-    .search-ui .filter {
-
-    }
-    .search-ui .filter  select {
+    .search-ui .filter {}
+    .search-ui .filter select {
         padding: 10px;
         display: block;
         border-radius: 5px;
@@ -22,9 +21,7 @@ select{
         background-color: #85c7f2;
         color: white;
     }
-    .search-ui .search-input {
-
-    }
+    .search-ui .search-input {}
     .search-ui .search-input input {
         display: block;
         padding: 10px;
@@ -33,9 +30,7 @@ select{
         border-radius: 5px;
         width: 100%;
     }
-    .search-ui .search-button {
-        
-    }
+    .search-ui .search-button {}
     .search-ui .search-button input {
         display: block;
         padding: 10px;
@@ -51,15 +46,11 @@ select{
     .search-ui form {
         display: flex;
     }
-
-    .search-ui form div{
+    .search-ui form div {
         flex: 1;
     }
-
-    .search-ui .filter {
-        
-    }
-    .search-ui .filter  select {
+    .search-ui .filter {}
+    .search-ui .filter select {
         padding: 10px;
         display: block;
         border-radius: 5px;
@@ -67,9 +58,7 @@ select{
         background-color: #85c7f2;
         color: white;
     }
-    .search-ui .search-input {
-
-    }
+    .search-ui .search-input {}
     .search-ui .search-input input {
         display: block;
         padding: 10px;
@@ -78,9 +67,7 @@ select{
         border-radius: 5px;
         width: 100%;
     }
-    .search-ui .search-button {
-
-    }
+    .search-ui .search-button {}
     .search-ui .search-button input {
         display: block;
         padding: 10px;
@@ -96,14 +83,11 @@ select{
     .search-ui form {
         display: flex;
     }
-
-    .search-ui form div{
+    .search-ui form div {
         flex: 1;
     }
-    .search-ui .filter {
-        
-    }
-    .search-ui .filter  select {
+    .search-ui .filter {}
+    .search-ui .filter select {
         padding: 10px;
         display: block;
         border-radius: 5px;
@@ -111,9 +95,7 @@ select{
         background-color: #85c7f2;
         color: white;
     }
-    .search-ui .search-input {
-
-    }
+    .search-ui .search-input {}
     .search-ui .search-input input {
         display: block;
         padding: 10px;
@@ -122,9 +104,7 @@ select{
         border-radius: 5px;
         width: 100%;
     }
-    .search-ui .search-button {
-
-    }
+    .search-ui .search-button {}
     .search-ui .search-button input {
         display: block;
         padding: 10px;

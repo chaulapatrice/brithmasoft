@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+  <div class="container py-3">
+        <form action="" enctype="multipart/form-data" method="post">
+            <h3>Edit job seeker data</h3>
+             {% csrf_token %}
+             {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                    {% endfor %}
+
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field|add_class:'form-control' }}
+                        {% for error in field.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
+        </form>
+    </div>
+{% endblock %}

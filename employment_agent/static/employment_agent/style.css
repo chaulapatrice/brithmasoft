@@ -1,0 +1,14 @@
+.navbar {
+    z-index: 99999;
+}
+
+.sticky-top {
+    z-index: 99998;
+}
+
+p,
+a,
+input,
+li {
+    font-size: 18px;
+}

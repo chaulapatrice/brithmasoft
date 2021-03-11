@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +26,9 @@ SECRET_KEY = '1!9o@0t31(w#lr%-t75m8by81h6$279rx9w%b6u*cttdz=hnuy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#USED when testing
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+
 ALLOWED_HOSTS = ["*"]
 
 
@@ -37,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'employment_agent'
+    'employment_agent',
+    'crispy_forms',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +125,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#To store user uploaded files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#The media access url
+MEDIA_URL = "/media/"

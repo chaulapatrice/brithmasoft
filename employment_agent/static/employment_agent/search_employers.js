@@ -41,16 +41,33 @@ function updateTableAndControls(result) {
         //first create a new table row
         const row = tableRef.insertRow();
         row.className = 'data-row';
-        row.innerHTML = `<td>${employer.fields.firstname}</td>`
-            + `<td>${employer.fields.lastname}</td>`
-            + `<td>${employer.fields.job_title}</td>`
-            + `<td>${status}</td>`
-            + `<td>${date.toDateString()}</td>`
-            + `<td id="controls">`
-            + `<button style="display:inline-block; margin: 0 10px;" onclick="viewEmployer(${employer.fields.id})">View</button>`
-            + `<button style="display:inline-block; margin: 0 10px;" onclick="editEmployer(${employer.fields.id}})">Edit</button>`
-            + `<button style="display:inline-block; margin: 0 10px;" onclick="deleteEmployer(${employer.fields.id})">Delete</button>`
-            + `</td>`;
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // true for mobile device
+            row.innerHTML = `<td><strong>Firstname:</strong> ${employer.fields.firstname}</td>` +
+                `<td><strong>Lastname:</strong> ${employer.fields.lastname}</td>` +
+                `<td><strong>Job title:</strong> ${employer.fields.job_title}</td>` +
+                `<td><strong>Status:</strong> ${status}</td>` +
+                `<td><strong>Date needed:</strong> ${date.toDateString()}</td>` +
+                `<td id="controls">` +
+                `<button style="display:inline-block; margin: 0 10px;" onclick="viewEmployer(${employer.pk})">View</button>` +
+                `<button style="display:inline-block; margin: 0 10px;" onclick="editEmployer(${employer.pk})">Edit</button>` +
+                `<button style="display:inline-block; margin: 0 10px;" onclick="deleteEmployer(${employer.pk})">Delete</button>` +
+                `</td>`;
+        } else {
+            // false for not mobile device
+            row.innerHTML = `<td>${employer.fields.firstname}</td>` +
+                `<td>${employer.fields.lastname}</td>` +
+                `<td>${employer.fields.job_title}</td>` +
+                `<td>${status}</td>` +
+                `<td>${date.toDateString()}</td>` +
+                `<td id="controls">` +
+                `<button style="display:inline-block; margin: 0 10px;" onclick="viewEmployer(${employer.pk})">View</button>` +
+                `<button style="display:inline-block; margin: 0 10px;" onclick="editEmployer(${employer.pk})">Edit</button>` +
+                `<button style="display:inline-block; margin: 0 10px;" onclick="deleteEmployer(${employer.pk})">Delete</button>` +
+                `</td>`;
+        }
+
     }
     //now update the controller user interface
     //if a next page exists
@@ -114,22 +131,22 @@ function updateTableAndControls(result) {
     }
     //update the current page indicator
     let currentPageSlot = document.querySelector("#current-page");
-    currentPageSlot.innerText = result.current_page;
+    if (currentPageSlot)
+        currentPageSlot.innerText = result.current_page;
     //update the total pages
     let totalPagesSlot = document.querySelector("#total-pages");
-    totalPagesSlot.innerText = result.total_pages;
+    if (totalPagesSlot)
+        totalPagesSlot.innerText = result.total_pages;
 }
 
 function getEmployerData(page) {
-    $.ajax(
-        {
-            url: `http://localhost:8000/employers/search/${page}/`,
-            type: 'GET',
-            success: function (result) {
-                updateTableAndControls(result);
-            }
+    $.ajax({
+        url: `http://localhost:8000/employers/search/${page}/`,
+        type: 'GET',
+        success: function(result) {
+            updateTableAndControls(result);
         }
-    )
+    })
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -156,11 +173,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 'X-CSRFToken': csrftoken,
                 'Content-Type': 'application/json'
             },
-            success: function (result) {
+            success: function(result) {
                 updateTableAndControls(result);
             },
 
         });
     })
 })
-
